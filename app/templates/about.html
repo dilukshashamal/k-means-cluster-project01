@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - {{ app_name }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='/css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="/" class="logo">
+          <span class="icon">Target</span>
+          Customer Segmentation AI
+        </a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/docs">API Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- About Card -->
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">About Customer Segmentation</h1>
+        </div>
+        <div class="card-body">
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #4b5563">
+            This application uses
+            <strong>Machine Learning (KMeans Clustering)</strong> to segment
+            customers into distinct groups based on their annual income and
+            spending behavior. By understanding these segments, businesses can:
+          </p>
+          <ul style="margin: 1.5rem 0; padding-left: 2rem; line-height: 2">
+            <li>Target marketing campaigns more effectively</li>
+            <li>Develop personalized product recommendations</li>
+            <li>Optimize pricing strategies for different customer groups</li>
+            <li>Improve customer retention and satisfaction</li>
+            <li>Maximize revenue through better customer understanding</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Model Information -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Model Information</h2>
+        </div>
+        <div id="modelInfo">
+          <p>Loading model information...</p>
+        </div>
+        <div style="margin-top: 2rem">
+          <h3 style="margin-bottom: 1rem">Technical Details</h3>
+          <ul style="line-height: 2; color: #4b5563">
+            <li><strong>Algorithm:</strong> KMeans Clustering</li>
+            <li><strong>Features:</strong> Annual Income, Spending Score</li>
+            <li>
+              <strong>Preprocessing:</strong> StandardScaler normalization
+            </li>
+            <li><strong>Initialization:</strong> k-means++</li>
+            <li>
+              <strong>Number of Clusters:</strong> 5 (optimized using Elbow
+              Method & Silhouette Score)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Customer Segments -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Customer Segments</h2>
+        </div>
+        <div class="cluster-grid">
+          {% for cluster_id, cluster_name in cluster_names.items() %}
+          <div class="cluster-card">
+            <h3>{{ cluster_name }}</h3>
+            <p><strong>Cluster ID:</strong> {{ cluster_id }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Cluster Statistics -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Cluster Statistics</h2>
+          <p class="card-subtitle">Statistical analysis from training data</p>
+        </div>
+        <div id="clusterStats" class="cluster-grid">
+          <p>Loading statistics...</p>
+        </div>
+      </div>
+
+      <!-- Technology Stack -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Technology Stack</h2>
+        </div>
+        <div class="cluster-grid">
+          <div class="cluster-card">
+            <h3>Backend</h3>
+            <p><strong>Framework:</strong> FastAPI</p>
+            <p><strong>ML Library:</strong> scikit-learn</p>
+            <p><strong>Data:</strong> pandas, numpy</p>
+          </div>
+          <div class="cluster-card">
+            <h3>Frontend</h3>
+            <p><strong>HTML5:</strong> Semantic markup</p>
+            <p><strong>CSS3:</strong> Modern styling</p>
+            <p><strong>JavaScript:</strong> Interactive UI</p>
+          </div>
+          <div class="cluster-card">
+            <h3>Architecture</h3>
+            <p><strong>Pattern:</strong> MVC</p>
+            <p><strong>API:</strong> RESTful</p>
+            <p><strong>Validation:</strong> Pydantic</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Documentation -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">API Documentation</h2>
+        </div>
+        <p style="line-height: 1.8; color: #4b5563; margin-bottom: 1rem">
+          This application provides a RESTful API for customer segmentation. You
+          can access the interactive API documentation and test endpoints using:
+        </p>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem">
+          <a href="/docs" class="btn btn-primary" style="text-decoration: none">
+            Swagger UI Docs
+          </a>
+          <a
+            href="/redoc"
+            class="btn btn-primary"
+            style="text-decoration: none; background: #10b981"
+          >
+            ReDoc Documentation
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>{{ app_name }} | Powered by FastAPI & Machine Learning</p>
+      <p>Built with care using MVC Architecture & Best Practices</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', path='/js/app.js') }}"></script>
+  </body>
+</html>

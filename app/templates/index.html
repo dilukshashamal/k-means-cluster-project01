@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AI-powered customer segmentation tool for marketing and business intelligence"
+    />
+    <title>{{ app_name }} - Customer Segmentation</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='/css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="/" class="logo">
+          <span class="icon">Target</span>
+          Customer Segmentation AI
+        </a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/docs">API Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Welcome Card -->
+      <div class="card">
+        <div class="card-header">
+          <h1 class="card-title">AI-Powered Customer Segmentation</h1>
+          <p class="card-subtitle">
+            Predict customer segments based on income and spending behavior
+            using Machine Learning
+          </p>
+        </div>
+
+        <!-- Model Status -->
+        {% if model_loaded %}
+        <div class="alert alert-success">
+          <strong>Model Ready:</strong> KMeans clustering model is loaded and
+          ready for predictions
+        </div>
+        {% else %}
+        <div class="alert alert-danger">
+          <strong>Warning:</strong> ML model not loaded. Please train the model
+          first using the Jupyter notebooks.
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Prediction Form -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Enter Customer Data</h2>
+        </div>
+
+        <form onsubmit="predictSegment(event)" id="predictionForm">
+          <!-- Annual Income -->
+          <div class="form-group">
+            <label for="income" class="form-label">
+              Annual Income (in thousands)
+            </label>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <input
+                type="range"
+                id="income"
+                name="income"
+                min="15"
+                max="150"
+                value="70"
+                class="input-range"
+                required
+              />
+              <span class="range-value">
+                $<span id="incomeValue">70</span>k
+              </span>
+            </div>
+            <p class="form-help">
+              Slide to select annual income (e.g., 70 means $70,000/year)
+            </p>
+          </div>
+
+          <!-- Spending Score -->
+          <div class="form-group">
+            <label for="spending" class="form-label">
+              Spending Score (1-100)
+            </label>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <input
+                type="range"
+                id="spending"
+                name="spending"
+                min="1"
+                max="100"
+                value="50"
+                class="input-range"
+                required
+              />
+              <span class="range-value">
+                <span id="spendingValue">50</span>/100
+              </span>
+            </div>
+            <p class="form-help">
+              Spending behavior score: 1 (low) to 100 (high)
+            </p>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            id="submitBtn"
+          >
+            Predict Segment
+          </button>
+        </form>
+      </div>
+
+      <!-- Error Display -->
+      <div id="error" class="hidden"></div>
+
+      <!-- Result Display -->
+      <div id="result" class="hidden"></div>
+
+      <!-- Information Card -->
+      <div class="card mt-2">
+        <div class="card-header">
+          <h2 class="card-title">How It Works</h2>
+        </div>
+        <div class="cluster-grid">
+          <div class="cluster-card">
+            <h3>Average Customer</h3>
+            <p>
+              Moderate income and spending habits. Balanced approach to
+              shopping.
+            </p>
+          </div>
+          <div class="cluster-card">
+            <h3>VIP / Whale</h3>
+            <p>
+              High income and high spending. Premium customers who value
+              quality.
+            </p>
+          </div>
+          <div class="cluster-card">
+            <h3>Young Trendsetter</h3>
+            <p>
+              Lower income but high spending. Fashion-conscious and
+              brand-oriented.
+            </p>
+          </div>
+          <div class="cluster-card">
+            <h3>High Earner Saver</h3>
+            <p>
+              High income but conservative spending. Value-oriented purchases.
+            </p>
+          </div>
+          <div class="cluster-card">
+            <h3>Budget Conscious</h3>
+            <p>Lower income and spending. Prioritizes necessities and deals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        {{ app_name }} v{{ app_version }} | Powered by FastAPI & Machine
+        Learning
+      </p>
+      <p>Built with care using KMeans Clustering Algorithm</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', path='/js/app.js') }}"></script>
+  </body>
+</html>

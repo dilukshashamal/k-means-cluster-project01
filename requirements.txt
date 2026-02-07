@@ -1,0 +1,25 @@
+# Data Science & ML Libraries
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+jupyter
+
+# FastAPI Web Framework
+fastapi==0.115.12
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Templating Engine
+jinja2==3.1.5
+
+# Data Validation
+pydantic==2.10.6
+pydantic-settings==2.7.1
+
+# HTTP Client (for API testing)
+httpx==0.28.1
+
+# Environment Management
+python-dotenv==1.0.1
