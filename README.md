@@ -357,52 +357,7 @@ curl -X POST http://localhost:8000/api/v1/predict \
   -d '{"annual_income": 90, "spending_score": 85}'
 ```
 
-## 🤝 Contributing
-
-This is a learning project. Feel free to:
-
-- Add more features
-- Improve the UI/UX
-- Add more ML models
-- Implement authentication
-- Add database integration
-
 ## 📝 License
 
 This project is created for educational purposes.
 
-## 👨‍💻 Author
-
-**AI ML Team**
-
-## 🙏 Acknowledgments
-
-- FastAPI documentation
-- scikit-learn documentation
-- Mall Customers dataset
-
-## 📞 Support
-
-For issues or questions:
-
-1. Check the API documentation at `/docs`
-2. Review the code comments
-3. Check application logs
-
-## 🔮 Future Enhancements
-
-- [ ] Add database integration (PostgreSQL/MongoDB)
-- [ ] Implement user authentication (JWT)
-- [ ] Add more ML models (DBSCAN, Hierarchical)
-- [ ] Create batch prediction endpoint
-- [ ] Add model retraining endpoint
-- [ ] Implement A/B testing framework
-- [ ] Add monitoring and logging (Prometheus/Grafana)
-- [ ] Dockerize the application
-- [ ] Add CI/CD pipeline
-- [ ] Deploy to cloud (AWS/Azure/GCP)
-
----
-
-**⭐ If you found this helpful, please star the repository!**
-"# k-means-cluster-project01" 
